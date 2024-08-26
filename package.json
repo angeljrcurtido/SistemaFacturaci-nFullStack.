@@ -1,0 +1,45 @@
+{
+  "name": "SistemaVentasC",
+  "version": "1.0.0",
+  "main": "main.js",
+  "author": "Tu Nombre",
+  "scripts": {
+    "start": "electron .",
+    "build": "npm run build-electron",
+    "build-electron": "electron-builder"
+  },
+  "build": {
+    "appId": "SistemaVentasC",
+    "win": {
+      "target": "nsis",
+      "artifactName": "${productName}-setup-${version}.${ext}"
+    },
+    "files": [
+      "cliente/dist/**/*",
+      "main.js",
+      "preload.js",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "server/",
+        "to": "server",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  },
+  "dependencies": {
+    "electron-is-dev": "^3.0.1"
+  },
+  "devDependencies": {
+    "concurrently": "^7.0.0",
+    "electron": "^30.0.9",
+    "electron-builder": "^24.13.3"
+  }
+}
